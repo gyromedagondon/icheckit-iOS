@@ -1,0 +1,44 @@
+workflows:
+  my-workflow:
+    instance_type: mac_pro
+    environment:
+      cocoapods: 1.10.2
+      flutter: beta
+      java: 1.8
+      node: 16.9.0
+      npm: latest
+      ruby: 2.5.2
+      xcode: 12.5
+    scripts:
+      - name: Add provisioning profiles
+        script: |
+          set -e # exit on first failed command
+
+          PROFILES_HOME="$HOME/Library/MobileDevice/Provisioning Profiles"
+          mkdir -p "$PROFILES_HOME"
+          echo ${PROVISIONING_PROFILE?} | base64 --decode > "$PROFILES_HOME/$(uuidgen).mobileprovision"
+      - name: Add signing certificate
+        script: |
+          set -e # exit on first failed command
+
+          echo ${CERTIFICATE?} | base64 --decode > /tmp/certificate.p12
+          keychain initialize
+          keychain add-certificates \
+              --certificate /tmp/certificate.p12 \
+              --certificate-password ${CERTIFICATE_PASSWORD?}
+      - name: Increment build number
+        script: agvtool new-version -all $BUILD_NUMBER
+      - name: Set up code signing settings on Xcode project
+        script: xcode-project use-profiles
+      - name: Build ipa for distribution
+        script: xcode-project build-ipa \
+                    --workspace "${XCODE_WORKSPACE?}" \
+                    --scheme "${XCODE_SCHEME?}"
+    artifacts:
+      - build/ios/ipa/*.ipa
+    publishing:
+      app_store_connect:
+        api_key: iCheckIt iOS
+        key_id: 8GAADJK59Y
+        issuer_id: 5e366bf2-eea9-41f8-bfc2-7df87ccb4737
+        submit_to_testflight: true

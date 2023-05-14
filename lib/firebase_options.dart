@@ -67,8 +67,9 @@ class DefaultFirebaseOptions {
     messagingSenderId: '160010861440',
     projectId: 'icheckit-6a8bb',
     storageBucket: 'icheckit-6a8bb.appspot.com',
-    iosClientId: '160010861440-l9cf0ar8vqq6nol77iepsealrhsci51t.apps.googleusercontent.com',
-    iosBundleId: 'org.nativescript.icheckitFinal',
+    iosClientId:
+        '160010861440-l9cf0ar8vqq6nol77iepsealrhsci51t.apps.googleusercontent.com',
+    iosBundleId: 'org.nativescript.iCheckit',
   );
 
   static const FirebaseOptions macos = FirebaseOptions(
@@ -77,7 +78,8 @@ class DefaultFirebaseOptions {
     messagingSenderId: '160010861440',
     projectId: 'icheckit-6a8bb',
     storageBucket: 'icheckit-6a8bb.appspot.com',
-    iosClientId: '160010861440-qsqnikn2t55sm848cnqiit33955sdki2.apps.googleusercontent.com',
+    iosClientId:
+        '160010861440-qsqnikn2t55sm848cnqiit33955sdki2.apps.googleusercontent.com',
     iosBundleId: 'com.example.icheckitFinal',
   );
 }

@@ -1,0 +1,14 @@
+{
+  "editor.formatOnSave": true,
+  "svg.preview.background": "black",
+
+  // Remove .fvm files from search
+  "search.exclude": {
+    "**/.fvm": true
+  },
+  // Remove from file watching
+  "files.watcherExclude": {
+    "**/.fvm": true
+  },
+  "dart.flutterSdkPaths": ["/Users/usr/fvm/versions"]
+}

@@ -1,0 +1,7 @@
+{
+  "flutterSdkVersion": "3.3.8",
+  "flavors": {
+    "default": "3.0.5",
+    "beta": "3.3.5"
+  }
+}
